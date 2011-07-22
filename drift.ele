@@ -13,57 +13,46 @@
 	default_order            = 2,
 	print_statistics         = 1,
 	random_number_seed       = 987654321,
-	expand_for               = "NRTL_input_binary.sdds",
+	! expand_for               = "NRTL_input_binary.sdds",
+	p_central            = 45000,
 	tracking_updates         = 1,
 	load_balancing_on        = 0
-&end
-
-&load_parameters
-	filename              = "err.par",
-	change_defined_values = 1,
-	verbose               = 1
-&end
-
-&correct
-	mode                   = "trajectory",
-	method                 = "global",
-	trajectory_output      = "%s.orb",
-	corrector_output       = "%s.orb",
-	statistics             = "%s.orb",
-	verbose                = 1,
-	track_before_and_after = 1
 &end
 
 &run_control
 	n_steps                  = 1
 &end
 
-&twiss_output
-	filename     = %s.twi,
-	matched      = 0,
-	beta_x       = 3.4013,
-	beta_y       = 3.0819,
-	alpha_x      = 0.1562,
-	alpha_y      = 0.0657,
-	eta_x        = 0,
-	etap_x       = 0,
-	eta_y        = 0,
-	etap_y       = 0
-	concat_order = 3
+&bunched_beam
+	bunch=%s.bun,
+	n_particles_per_bunch=0.1e5,
+	emit_nx = 50e-6,
+	beta_x = 0.1,
+	alpha_x = 0,
+	eta_x = 0,
+	etap_x = 0,
+	emit_ny = 50e-6,
+	beta_y = 0.1,
+	alpha_y = 0,
+	eta_y = 0,
+	etap_y = 0,
+	Po = 45000,
+	sigma_dp=0.01,
+	! 3 mm/10 fs
+	sigma_s = 3e-6,
+	dp_s_coupling = 0,
+	momentum_chirp = 0,
+	one_random_bunch = 1,
+	distribution_type = {"gaussian","gaussian","gaussian"}
+&end
+&alter_elements
+	name = CH
+	item = PER_PARTICLE,
+	multiplicative=1,
+	! Number of particles here
+	value = 0.1e5
 &end
 
-&sdds_beam
-	input="NRTL_input_binary.sdds",
-	center_transversely=1,
-	center_arrival_time=1
-&end
-
-! &matrix_output
-!         printout=%s.mpr,
-!         printout_order=2,
-!         SDDS_output=%s.mat,
-!         SDDS_output_order=2,
-! &end
 
 &track
 &end
