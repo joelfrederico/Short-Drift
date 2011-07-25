@@ -2,3 +2,9 @@
 *.cen
 *.fin
 *.log
+*.bun*
+*.out*
+*.mag
+*.mpr
+*.twi
+*~
