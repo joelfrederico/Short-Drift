@@ -6,14 +6,14 @@
 
 &run_setup
 	lattice                  = "drift.lte",
-	use_beamline             = "mainbeamline",
+	use_beamline             = "MAINBEAMLINE",
 	output                   = %s.out,
 	centroid                 = %s.cen,
-	! sigma                    = %s.sig,
 	final                    = %s.fin,
+	magnets                  = %s.mag,
+	! sigma                    = %s.sig,
 	! acceptance               = %s.acceptance,
 	! losses                   = %s.lost,
-	magnets                  = %s.mag,
 	! parameters               = %s.par,
 	combine_bunch_statistics = 0,
 	default_order            = 2,
@@ -26,13 +26,7 @@
 &end
 
 &load_parameters
-	filename              = quoff.par,
-	change_defined_values = 1,
-	force_occurence_data  = 1,
-	verbose               = 1
-&end
-&load_parameters
-	filename              = kicks.par,
+	filename              = qmat.par,
 	change_defined_values = 1,
 	force_occurence_data  = 1,
 	verbose               = 1
@@ -45,66 +39,16 @@
 &twiss_output
 	filename            = %s.twi,
 	matched		    = 0,
-	beta_x              = 3.252294945,
-	alpha_x             = -2.395169621,
+	beta_x              = 0.09,
+	alpha_x             = 0,
 	eta_x               = 0,
 	etap_x              = 0,
-	beta_y              = 0.6188320366,
-	alpha_y             = 0.5309002778,
+	beta_y              = 0.09,
+	alpha_y             = 0,
 	eta_y               = 0,
 	etap_y              = 0,
 	output_at_each_step = 1
 &end
-
-! &optimization_term
-!         term = "BPM#1.Cx sqr"
-! &end
-&optimization_setup
-	! equation      = "BPM#1.Cx sqr",
-	equation      = "BPM1#1.etax sqr BPM2#1.etax sqr + BPM3#1.etax sqr + BPM4#1.etax sqr + ",
-	mode          = "minimize",
-	method        = "simplex",
-	log_file      = "%s-min.log",
-	term_log_file = "%s-min.tlog",
-	tolerance     = 1e-12,
-	! n_passes      = 10,
-	! n_evaluations = 100
-&end
-&optimization_variable
-	name        = XC1,
-	item        = KICK,
-	lower_limit = -5e-3,
-	upper_limit = 5e-3,
-	step_size   = 1e-6
-&end
-&optimization_variable
-	name        = XC3,
-	item        = KICK,
-	lower_limit = -5e-3,
-	upper_limit = 5e-3,
-	step_size   = 1e-6
-&end
-&optimization_variable
-	name        = XC5,
-	item        = KICK,
-	lower_limit = -5e-3,
-	upper_limit = 5e-3,
-	step_size   = 1e-6
-&end
-&optimization_variable
-	name        = XC7,
-	item        = KICK,
-	lower_limit = -5e-3,
-	upper_limit = 5e-3,
-	step_size   = 1e-6
-&end
-! &optimization_variable
-!         name        = XC8,
-!         item        = KICK,
-!         lower_limit = -5e-3,
-!         upper_limit = 5e-3,
-!         step_size   = 1e-6
-! &end
 
 &bunched_beam
 	bunch                    = %s.bun,
@@ -112,14 +56,14 @@
 	emit_nx                  = 50e-6,
 	emit_ny                  = 50e-6,
 	! use_twiss_command_values = 1,
-	beta_x              = 3.252294945,
-	alpha_x             = -2.395169621,
+	beta_x              = 0.09,
+	alpha_x             = 0,
 	eta_x               = 0,
 	etap_x              = 0,
-	beta_y              = 0.6188320366,
-	alpha_y             = 0.5309002778,
+	beta_y              = 0.09,
+	alpha_y             = 0,
 	eta_y               = 0,
-	etap_y              = 0
+	etap_y              = 0,
 	Po                       = 45000,
 	sigma_dp                 = 0.01,
 	! 3 mm/10 fs
