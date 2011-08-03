@@ -4,7 +4,7 @@
 ! the elegant deck file.
 C: CHARGE,PER_PARTICLE=1.6e-19
 
-Q: EMATRIX,L=0.01
+Q: EMATRIX,L=0,R11=1,R22=1,R33=1,R44=1,R55=1,R66=1
 
 Q2X:   LINE =(Q   , Q)
 Q4X:   LINE =(Q2X , Q2X)
