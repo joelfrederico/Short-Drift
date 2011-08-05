@@ -17,7 +17,7 @@ delL=0.1
 def k(L):
 	# Frac of length
 	temp=L/(128*delL)
-	This defines the 
+	# This defines k at s
 	return L*(1-temp)
 
 def genmatrix():
